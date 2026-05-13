@@ -89,11 +89,19 @@ body {
   overflow: hidden;
 }
 
-.card-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.card-thumb-roblox-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.12);
+  letter-spacing: -2px;
+  font-family: 'Inter', sans-serif;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
 }
 
 .card-thumb-overlay {
@@ -229,6 +237,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   display: block;
 }
 
@@ -374,6 +383,50 @@ body {
 
 .btn-icon {
   font-size: 1rem;
+}
+
+/* In Progress */
+.in-progress-badge {
+  align-self: flex-end;
+  margin-top: 0.4rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.5);
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.modal-in-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.modal-in-progress-icon {
+  font-size: 2rem;
+}
+
+.modal-in-progress-text {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.modal-in-progress-sub {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.5;
 }
 
 /* Desktop padding */

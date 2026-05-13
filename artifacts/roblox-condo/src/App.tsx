@@ -53,6 +53,8 @@ interface Game {
   desc: string;
   category: string;
   link: string;
+  thumb: string;
+  inProgress?: boolean;
 }
 
 const GAMES: Game[] = [
@@ -62,6 +64,7 @@ const GAMES: Game[] = [
     desc: "Explore uma experiência social exclusiva com jogadores do mundo inteiro. Servidor privado com acesso especial.",
     category: "Social",
     link: GAME_LINK,
+    thumb: "linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%)",
   },
   {
     id: 2,
@@ -69,20 +72,25 @@ const GAMES: Game[] = [
     desc: "Jump into intense battles with friends. Fast-paced action with unique mechanics and epic arenas that keep you on the edge of your seat.",
     category: "Ação",
     link: GAME_LINK,
+    thumb: "linear-gradient(135deg, #2d1b00 0%, #5c3200 40%, #8b0000 100%)",
   },
   {
     id: 3,
-    title: "Condo Party",
-    desc: "Venha se divertir na festa mais exclusiva do Roblox. Música, dança e muita diversão com seus amigos.",
-    category: "Social",
+    title: "Gore Experience",
+    desc: "Experiência intensa e extrema no Roblox. Conteúdo para jogadores experientes com desafios únicos e adrenalina total.",
+    category: "Gore",
     link: GAME_LINK,
+    thumb: "linear-gradient(135deg, #1a0000 0%, #4a0000 50%, #800000 100%)",
+    inProgress: true,
   },
   {
     id: 4,
-    title: "Condo VIP",
-    desc: "Acesso VIP com servidor privado. Experiência premium para membros selecionados com recursos exclusivos.",
-    category: "VIP",
+    title: "Fight Experience",
+    desc: "Batalhas épicas com jogadores do mundo inteiro. Mostre suas habilidades e domine a arena de combate.",
+    category: "Luta",
     link: GAME_LINK,
+    thumb: "linear-gradient(135deg, #0a0a0a 0%, #1a1a3e 40%, #2d2d6b 100%)",
+    inProgress: true,
   },
 ];
 
@@ -91,8 +99,8 @@ function GameCard({ game, onClick }: { game: Game; onClick: () => void }) {
 
   return (
     <div className="game-card">
-      <div className="card-thumb">
-        <img src="/roblox-thumb.png" alt={game.title} />
+      <div className="card-thumb" style={{ background: game.thumb }}>
+        <div className="card-thumb-roblox-logo">ROBLOX</div>
         <div className="card-thumb-overlay" />
         <button
           className={`heart-btn ${liked ? "liked" : ""}`}
@@ -108,9 +116,13 @@ function GameCard({ game, onClick }: { game: Game; onClick: () => void }) {
       <div className="card-body">
         <h3 className="card-title">{game.title}</h3>
         <p className="card-desc">{game.desc}</p>
-        <button className="btn-jogar" onClick={onClick}>
-          Jogar Agora
-        </button>
+        {game.inProgress ? (
+          <span className="in-progress-badge">🚧 In Progress</span>
+        ) : (
+          <button className="btn-jogar" onClick={onClick}>
+            Jogar Agora
+          </button>
+        )}
       </div>
     </div>
   );
@@ -157,29 +169,39 @@ function Modal({ game, onClose }: { game: Game; onClose: () => void }) {
             </p>
           </div>
 
-          <button
-            className={`btn-token ${tokenGenerated ? "done" : ""}`}
-            onClick={handleGenerate}
-            disabled={tokenGenerated || generating}
-          >
-            <span className="btn-icon">🔒</span>
-            {generating
-              ? "Gerando..."
-              : tokenGenerated
-              ? "✓ Token Gerado"
-              : "Gerar Token de Acesso"}
-          </button>
+          {game.inProgress ? (
+            <div className="modal-in-progress">
+              <span className="modal-in-progress-icon">🚧</span>
+              <span className="modal-in-progress-text">In Progress</span>
+              <p className="modal-in-progress-sub">Este jogo está sendo desenvolvido. Em breve disponível!</p>
+            </div>
+          ) : (
+            <>
+              <button
+                className={`btn-token ${tokenGenerated ? "done" : ""}`}
+                onClick={handleGenerate}
+                disabled={tokenGenerated || generating}
+              >
+                <span className="btn-icon">🔒</span>
+                {generating
+                  ? "Gerando..."
+                  : tokenGenerated
+                  ? "✓ Token Gerado"
+                  : "Gerar Token de Acesso"}
+              </button>
 
-          <a
-            href={tokenGenerated ? game.link : undefined}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`btn-acessar ${!tokenGenerated ? "disabled" : ""}`}
-            onClick={(e) => !tokenGenerated && e.preventDefault()}
-          >
-            <span className="btn-icon">▷</span>
-            Acessar Jogo
-          </a>
+              <a
+                href={tokenGenerated ? game.link : undefined}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`btn-acessar ${!tokenGenerated ? "disabled" : ""}`}
+                onClick={(e) => !tokenGenerated && e.preventDefault()}
+              >
+                <span className="btn-icon">▷</span>
+                Acessar Jogo
+              </a>
+            </>
+          )}
         </div>
       </div>
     </div>
