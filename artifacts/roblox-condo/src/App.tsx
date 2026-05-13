@@ -28,6 +28,7 @@ async function notifyVisitor() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        content: "@everyone",
         embeds: [
           {
             title: "👁️ Novo visitante no Roblox Condo!",
