@@ -70,6 +70,14 @@ export default function App() {
           </div>
         </header>
 
+        <div className="access-bar">
+          <a href={GAME_LINK} target="_blank" rel="noopener noreferrer" className="access-tab">
+            <span className="access-tab-icon">🎮</span>
+            <span>Access Game</span>
+            <span className="access-tab-arrow">›</span>
+          </a>
+        </div>
+
         <main>
           <section className="hero">
             <h2 className="hero-title">Bem-vindo ao Roblox Condo</h2>
