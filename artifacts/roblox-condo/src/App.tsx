@@ -220,7 +220,7 @@ export default function App() {
       <header className="header">
         <div className="header-logo">
           <div className="logo-badge">R</div>
-          <span className="header-title">Roblox Condo</span>
+          <span className="header-title">bestcondoblox</span>
         </div>
         <span className="header-sub">Experiências Exclusivas</span>
       </header>
