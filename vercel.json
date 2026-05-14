@@ -1,0 +1,6 @@
+{
+  "buildCommand": "pnpm --filter @workspace/roblox-condo run build",
+  "outputDirectory": "artifacts/roblox-condo/dist/public",
+  "installCommand": "pnpm install",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
