@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const DISCORD_WEBHOOK =
   "https://discord.com/api/webhooks/1454577221573410889/pNI1MaYQTFm3n0-1UBkOLKUMF216j5XHEssVnioYKLnzMy8dkXpFJaa67fs4-x6iABEj";
@@ -208,12 +208,50 @@ function Modal({ game, onClose }: { game: Game; onClose: () => void }) {
   );
 }
 
+function Intro({ onDone }: { onDone: () => void }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [fading, setFading] = useState(false);
+
+  function finish() {
+    setFading(true);
+    setTimeout(onDone, 600);
+  }
+
+  return (
+    <div className={`intro-screen ${fading ? "fade-out" : ""}`}>
+      <video
+        ref={videoRef}
+        className="intro-video"
+        src="/intro.mp4"
+        autoPlay
+        muted
+        playsInline
+        onEnded={finish}
+      />
+      <div className="intro-overlay" />
+      <div className="intro-content">
+        <div className="intro-logo">R</div>
+        <h1 className="intro-title">bestcondoblox</h1>
+        <p className="intro-sub">Experiências Exclusivas</p>
+      </div>
+      <button className="intro-skip" onClick={finish}>
+        Pular ›
+      </button>
+    </div>
+  );
+}
+
 export default function App() {
+  const [showIntro, setShowIntro] = useState(true);
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
 
   useEffect(() => {
     notifyVisitor();
   }, []);
+
+  if (showIntro) {
+    return <Intro onDone={() => setShowIntro(false)} />;
+  }
 
   return (
     <div className="app">
